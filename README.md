@@ -430,7 +430,6 @@ Built for AzerothCore worldbuilding, GObject editing, NPC placement workflows, a
 ## 🏷️ Version
 
 ```text
-V#
+V0.3.2
 ```
 
-Replace `V#` with the current release version before publishing.
