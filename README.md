@@ -223,6 +223,10 @@ At the character select screen:
 
 Once the module and addon are installed, open the GObject Editor Tool in game.
 
+<p align="center">
+  <img src="assets/Mainwindow.png" alt="GObject Editor Tool main window" width="900">
+</p>
+
 The tool is designed to help with:
 
 * 🧱 GObject placement
@@ -245,6 +249,24 @@ The search button opens a dedicated search window.
 
 Use the search field to look for entries and narrow down what you want to work with.
 
+The search window supports both GObject searching and NPC searching.
+
+### 🧱 GObject Search
+
+Use the normal search mode to find and preview GObject entries before placing them in game.
+
+<p align="center">
+  <img src="assets/Gobjectsearch.png" alt="GObject search and placement window" width="900">
+</p>
+
+### 🧍 NPC Search
+
+Enable **Search NPCs** to search and preview NPC entries before placing them in game.
+
+<p align="center">
+  <img src="assets/NPCsearch.png" alt="NPC search and placement window" width="900">
+</p>
+
 The search window is intended to keep the main tool clean while still giving access to entry lookup functionality.
 
 ---
@@ -252,6 +274,10 @@ The search window is intended to keep the main tool clean while still giving acc
 ## 🪟 Popout Controls Window
 
 The popout controls window provides a separate control panel for editing actions.
+
+<p align="center">
+  <img src="assets/Popoutcontrols.png" alt="Popout controls window" width="700">
+</p>
 
 This helps keep controls accessible while working with the main editor interface.
 
@@ -279,6 +305,8 @@ This repository should contain:
 README.md
 GObject_Editor_Tool_User_Guide.pdf
 GObject_Editor_Tool.zip
+assets/
+└─ gobjecteditor.png
 ```
 
 The README stays outside the ZIP so GitHub can display it on the repository front page.
