@@ -10,6 +10,12 @@ It combines a **server-side AzerothCore module** with an **in-game WoW addon UI*
 
 Made by **Grimoire**.
 
+## 🎥 Showcase Video
+
+Watch the GObject Editor Tool showcase on YouTube:
+
+[▶️ Watch on YouTube](https://youtu.be/X_A0Bfu7_X4)
+
 ---
 
 ## ✨ Features
