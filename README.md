@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/gobjecteditor.png" alt="GObject Editor Tool Logo" width="420">
+</p>
+
 # 🛠️ GObject Editor Tool
 
 **GObject Editor Tool** is an AzerothCore world-editing toolkit built for faster in-game building, object placement, NPC placement, and scene editing.
