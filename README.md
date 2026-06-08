@@ -279,9 +279,8 @@ The popout controls window provides a separate control panel for editing actions
   <img src="assets/Popoutcontrols.png" alt="Popout controls window" width="700">
 </p>
 
-This helps keep controls accessible while working with the main editor interface.
+This helps keep controls accessible while working outside the main editor interface.
 
-The popout window is designed to appear clearly in front of the main window and should not use transparency.
 
 ---
 
