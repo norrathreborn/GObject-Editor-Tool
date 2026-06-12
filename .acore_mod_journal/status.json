@@ -1,0 +1,26 @@
+{
+  "last_worked": "",
+  "summary": "Initial Acore Mod Journal tracking setup for GObject Editor.",
+  "current_focus": "Prepare GObject Editor so it can be imported and tracked by Acore Mod Journal.",
+  "completed": [
+    {
+      "title": "Added base Acore Mod Journal tracking files",
+      "type": "Added",
+      "target_version": "v0.3.4",
+      "include_in_changelog": true
+    }
+  ],
+  "next_steps": [
+    "Import GObject Editor into Acore Mod Journal.",
+    "Add initial GObject Editor task list.",
+    "Begin tracking changelog-ready completed work."
+  ],
+  "blocked": [],
+  "changelog_candidates": [
+    {
+      "title": "Added base Acore Mod Journal tracking support for GObject Editor.",
+      "type": "Added",
+      "target_version": "v0.3.4"
+    }
+  ]
+}
