@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: GObjectEditorUI
+## Notes: GM-only AzerothCore gameobject / npc editor UI.
+## Author: Grimoire
+## Version: 0.3.3
+## SavedVariables: GObjectEditorUISaved
+
+GObjectEditorUI.lua
