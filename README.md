@@ -35,27 +35,23 @@ Watch the GObject Editor Tool showcase on YouTube:
 
 ---
 
-## 📦 Included Files
+## 📦 Repository Structure
 
-This GitHub repository includes:
-
-```text
-README.md
-GObject_Editor_Tool_User_Guide.pdf
-GObject_Editor_Tool.zip
 ```
-
-The ZIP contains the install package:
-
-```text
-GObject_Editor_Tool/
-├─ module/
-│  └─ GObjectEditor/
-│     └─ server module files
-│
-└─ addon/
-   └─ GObjectEditor/
-      └─ WoW addon files
+GObject-Editor-Tool/
+├── mod-gobject-editor/          ← Server module (C++ source + CMake)
+│   ├── CMakeLists.txt
+│   ├── conf/
+│   │   └── mod_gobject_editor.conf.dist
+│   └── src/
+│       └── GObjectEditor.cpp
+├── GObjectEditorUI/             ← WoW client addon
+│   ├── GObjectEditorUI.lua
+│   └── GObjectEditorUI.toc
+├── assets/                      ← Screenshots
+├── Docs/                        ← Changelogs
+├── GObjectEditorUI_User_Guide_V0.3.4.pdf
+└── README.md
 ```
 
 ---
@@ -64,158 +60,61 @@ GObject_Editor_Tool/
 
 * AzerothCore WotLK 3.3.5a server
 * WoW 3.3.5a client
+* CMake ≥ 3.16
+* C++20 compiler (MSVC 19.24+ or GCC/Clang with C++20)
 * Access to your AzerothCore `modules` folder
-* Ability to rebuild your AzerothCore server
-* Ability to install WoW addons into the client
-
-The addon and module are designed to work together.
-The addon provides the UI, while the module provides the server-side support.
 
 ---
 
 ## 🧩 Server Module Installation
 
-### 1. Download and Extract
+### 1. Clone into modules
 
-Download:
-
-```text
-GObject_Editor_Tool.zip
+```bash
+cd azerothcore-wotlk/modules/
+git clone https://github.com/blaaahhhh187/GObject-Editor-Tool.git
 ```
 
-Extract the ZIP.
+The module folder `mod-gobject-editor/` inside the repo is auto-detected by AzerothCore's CMake.
 
-Open:
+### 2. Reconfigure & Rebuild
 
-```text
-GObject_Editor_Tool/module/
+```bash
+cd azerothcore-wotlk/
+mkdir -p build && cd build
+cmake .. -DMODULES=static
+cmake --build . --config RelWithDebInfo
 ```
 
----
+The module requires **no SQL files** — it uses existing DB tables.
 
-### 2. Copy the Module Folder
+### 3. Configuration (optional)
 
-Copy the included module folder into your AzerothCore modules directory.
+After first CMake run, a config file `mod_gobject_editor.conf` is created from the `.dist` template. Key options:
 
-Example:
-
-```text
-azerothcore-wotlk/modules/GObjectEditor/
-```
-
-Your final path should look like:
-
-```text
-azerothcore-wotlk/
-└─ modules/
-   └─ GObjectEditor/
-      └─ module files
-```
-
-Use the actual included module folder name.
-
----
-
-### 3. Reconfigure AzerothCore
-
-After placing the module inside the `modules` folder, rerun CMake for your AzerothCore build.
-
-Use your normal AzerothCore CMake workflow:
-
-```text
-Configure
-Generate
-```
-
----
-
-### 4. Rebuild the Server
-
-Rebuild your AzerothCore server.
-
-At minimum, rebuild:
-
-```text
-worldserver
-```
-
-A full rebuild is also fine if that is your normal workflow.
-
----
-
-### 5. Apply SQL Files If Included
-
-If the module includes SQL files, apply them to the correct AzerothCore database.
-
-Check the file name and folder path before applying SQL.
-
-Common AzerothCore databases include:
-
-```text
-acore_world
-acore_auth
-acore_characters
-```
-
-Do not apply SQL blindly.
-Use the database target indicated by the SQL file or folder location.
-
----
-
-### 6. Start the Server
-
-Start your server normally.
-
-Watch the `worldserver` console for startup errors.
-
-If the server starts cleanly, the module side is installed.
+| Option | Default | Description |
+|---|---|---|
+| `GObjectEditor.Enable` | 1 | Enable/disable the module |
+| `GObjectEditor.RequiredSecurity` | 3 | Required GM level (3 = admin) |
+| `GObjectEditor.MaxScanDistance` | 50.0 | Max scan range in yards |
+| `GObjectEditor.MaxNudgeDistance` | 5.0 | Max move step per nudge |
+| `GObjectEditor.Debug` | 0 | Debug logging (0 = off) |
 
 ---
 
 ## 🎮 Addon Installation
 
-### 1. Open the Addon Folder
+### 1. Copy the Addon Folder
 
-From the extracted ZIP, open:
+Copy `GObjectEditorUI/` from this repository into your WoW client:
 
-```text
-GObject_Editor_Tool/addon/
+```
+World of Warcraft/Interface/AddOns/GObjectEditorUI/
 ```
 
----
+### 2. Enable the Addon
 
-### 2. Copy the Addon Folder
-
-Copy:
-
-```text
-GObjectEditor
-```
-
-into your WoW client AddOns folder:
-
-```text
-World of Warcraft/Interface/AddOns/
-```
-
-Final path:
-
-```text
-World of Warcraft/Interface/AddOns/GObjectEditor/
-```
-
----
-
-### 3. Enable the Addon
-
-Launch the game.
-
-At the character select screen:
-
-1. Click **AddOns**
-2. Find **GObject Editor Tool**
-3. Enable it
-4. Enter the game
+Launch the game → **AddOns** at character select → enable **GObject Editor Tool**.
 
 ---
 
@@ -289,115 +188,77 @@ This helps keep controls accessible while working outside the main editor interf
 A PDF user guide is included:
 
 ```text
-GObject_Editor_Tool_User_Guide.pdf
+GObjectEditorUI_User_Guide_V0.3.4.pdf
 ```
 
 Use the PDF for a more visual walkthrough of the tool and basic usage.
 
 ---
 
-## 📁 Recommended GitHub Layout
+## 📁 Repository Layout
 
-This repository should contain:
-
-```text
-README.md
-GObject_Editor_Tool_User_Guide.pdf
-GObject_Editor_Tool.zip
-assets/
-└─ gobjecteditor.png
 ```
-
-The README stays outside the ZIP so GitHub can display it on the repository front page.
-
-The PDF stays outside the ZIP so users can open it directly.
-
-The ZIP contains the install package for the module and addon.
+GObject-Editor-Tool/
+├── mod-gobject-editor/          ← Server module (cloned into AC modules/)
+│   ├── CMakeLists.txt
+│   ├── conf/mod_gobject_editor.conf.dist
+│   └── src/GObjectEditor.cpp
+├── GObjectEditorUI/             ← WoW client addon
+├── assets/                      ← Screenshots
+├── Docs/changelogs/             ← Version history
+├── releases/                    ← Archived ZIP releases
+├── GObjectEditorUI_User_Guide_V0.3.4.pdf
+└── README.md
+```
 
 ---
 
-## 🛠️ Package Layout
+## 🛠️ Install Locations
 
-Inside the ZIP:
-
-```text
-GObject_Editor_Tool/
-├─ module/
-│  └─ GObjectEditor/
-│     └─ server module files
-│
-└─ addon/
-   └─ GObjectEditor/
-      └─ WoW addon files
 ```
-
-Install locations:
-
-```text
-module/GObjectEditor  →  AzerothCore/modules/
-addon/GObjectEditor   →  World of Warcraft/Interface/AddOns/
+mod-gobject-editor/  →  azerothcore-wotlk/modules/mod-gobject-editor/  (via git clone)
+GObjectEditorUI/     →  WoW/Interface/AddOns/GObjectEditorUI/           (copy)
 ```
 
 ---
 
 ## 🧰 Troubleshooting
 
+### CMake does not detect the module
+
+The repo must be cloned **inside** `azerothcore-wotlk/modules/`, not elsewhere. CMake scans subdirectories of `modules/` automatically and detects `mod-gobject-editor/CMakeLists.txt`.
+
 ### Addon does not show in game
 
 Check that the addon folder is installed here:
 
-```text
-World of Warcraft/Interface/AddOns/GObjectEditor/
+```
+World of Warcraft/Interface/AddOns/GObjectEditorUI/
 ```
 
-Make sure the `.toc` file is directly inside the `GObjectEditor` folder.
+Make sure the `.toc` file is directly inside `GObjectEditorUI/` (not nested).
 
 Wrong:
-
-```text
-Interface/AddOns/GObjectEditor/GObjectEditor/GObjectEditor.toc
+```
+Interface/AddOns/GObjectEditorUI/GObjectEditorUI/GObjectEditorUI.toc
 ```
 
 Correct:
-
-```text
-Interface/AddOns/GObjectEditor/GObjectEditor.toc
 ```
-
----
+Interface/AddOns/GObjectEditorUI/GObjectEditorUI.toc
+```
 
 ### Server does not recognize the module
 
-Check that the module folder is inside:
-
-```text
-azerothcore-wotlk/modules/
-```
-
-Then rerun CMake and rebuild the server.
-
----
-
-### SQL errors on startup
-
-Check whether the module included SQL files.
-
-Make sure each SQL file was applied to the correct database.
-
-Do not apply world SQL to auth or character databases.
-
----
+Ensure the module was built into worldserver — check CMake output for `mod-gobject-editor`. If missing, re-clone into `modules/` and re-run CMake.
 
 ### UI opens but functions do not work
 
-Make sure both parts are installed:
+Make sure **both** parts are installed:
+- Server module (`mod-gobject-editor` built into worldserver)
+- Client addon (`GObjectEditorUI` in AddOns folder)
 
-```text
-Server module
-Client addon
-```
-
-The addon UI requires the server-side module support for full functionality.
+The addon UI requires the server-side module for full functionality.
 
 ---
 
@@ -408,7 +269,7 @@ The addon UI requires the server-side module support for full functionality.
 * Server-side access is required.
 * Rebuilding the server is required after installing the module.
 * The addon alone is not the full tool.
-* The module and addon should be kept together as matching versions.
+* No SQL files needed — the module uses existing DB tables.
 
 ---
 
@@ -420,15 +281,11 @@ This project uses the **GNU General Public License v3.0**.
 
 ## 👤 Credits
 
-Created by **Grimoire**.
-
-Built for AzerothCore worldbuilding, GObject editing, NPC placement workflows, and cleaner in-game building tools.
+Created by **Grimoire**. Fork maintained by **blaaahhhh187** with compatibility fixes.
 
 ---
 
 ## 🏷️ Version
 
-```text
-V0.3.2
-```
+V0.3.4 — fixed for current AzerothCore (CMake modern API, CreatureData::id compatibility, HandleSelect security fix)
 
