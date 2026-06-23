@@ -1,0 +1,28 @@
+[worldserver]
+
+###################################################################################################
+# GOBJECT EDITOR MODULE CONFIGURATION
+# Server-side GM-only world-building helper for gameobject scan/select/edit prototyping.
+# Active runtime config file after install:
+# mod_gobject_editor.conf
+###################################################################################################
+
+# Enable or disable the GObject Editor module.
+GObjectEditor.Enable = 1
+
+# Required account security level.
+# 3 is administrator/GM-level on most AzerothCore setups.
+GObjectEditor.RequiredSecurity = 3
+
+# Maximum scan distance accepted from addon.
+GObjectEditor.MaxScanDistance = 50.0
+
+# Temporary Selection Preview clone duration in seconds.
+# The preview is refreshed by select/move/rotate/undo and cleared when the editor window closes.
+GObjectEditor.SelectionPreviewDurationSeconds = 3600
+
+# Maximum movement step accepted from addon.
+GObjectEditor.MaxNudgeDistance = 5.0
+
+# Log GE addon messages and module actions to worldserver log.
+GObjectEditor.Debug = 0
