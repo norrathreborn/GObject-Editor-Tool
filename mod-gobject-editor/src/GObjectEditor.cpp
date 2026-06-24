@@ -1886,11 +1886,12 @@ static void HandleSelect(Player* player, std::vector<std::string> const& parts)
     uint32 guid = static_cast<uint32>(std::stoul(parts[1]));
     uint64 playerGuid = player->GetGUID().GetRawValue();
 
-    if (!LastScanGuidsByPlayer[playerGuid].empty() && LastScanGuidsByPlayer[playerGuid].count(guid) == 0)
-    {
-        SendAddonPayload(player, "ERROR:GUID_NOT_IN_LAST_SCAN");
-        return;
-    }
+	auto scanItr = LastScanGuidsByPlayer.find(playerGuid);
+	if (scanItr == LastScanGuidsByPlayer.end() || scanItr->second.count(guid) == 0)
+	{
+    SendAddonPayload(player, "ERROR:GUID_NOT_IN_LAST_SCAN");
+    return;
+	}
 
     ScanCandidate candidate;
     if (!GetObjectData(guid, candidate))
