@@ -25,4 +25,4 @@ GObjectEditor.SelectionPreviewDurationSeconds = 3600
 GObjectEditor.MaxNudgeDistance = 5.0
 
 # Log GE addon messages and module actions to worldserver log.
-GObjectEditor.Debug = 1
+GObjectEditor.Debug = 0

@@ -382,8 +382,8 @@ static bool GetCreatureData(uint32 guid, ScanCandidate& out)
         return false;
 
     out.guid = guid;
-    out.entry = data->id1;
-    out.name = GetCreatureName(data->id1);
+    out.entry = data->id;
+    out.name = GetCreatureName(data->id);
     out.map = data->mapid;
     out.transform.x = data->posX;
     out.transform.y = data->posY;
@@ -555,8 +555,8 @@ static std::vector<ScanCandidate> BuildScan(Player* player, float distance)
 
         ScanCandidate candidate;
         candidate.guid = guid;
-        candidate.entry = creature.id1;
-        candidate.name = GetCreatureName(creature.id1);
+        candidate.entry = creature.id;
+        candidate.name = GetCreatureName(creature.id);
         candidate.map = creature.mapid;
         candidate.transform.x = creature.posX;
         candidate.transform.y = creature.posY;
@@ -811,7 +811,7 @@ static bool DeleteCreatureByDbGuid(Player* player, uint32 guid, std::string& del
         return false;
     }
 
-    deletedName = GetCreatureName(data->id1);
+    deletedName = GetCreatureName(data->id);
 
     Creature* creature = ChatHandler(player->GetSession()).GetCreatureFromPlayerMapByDbGuid(guid);
     if (!creature || creature->IsPet() || creature->IsTotem())
