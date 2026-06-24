@@ -412,6 +412,15 @@ The addon UI requires the server-side module support for full functionality.
 
 ---
 
+## 📢 Disclaimer
+Important Legal Notice:
+
+All graphical assets, sounds, and textures used in this project are the intellectual property of Blizzard Entertainment, Inc.
+We do not own, claim ownership of, or distribute any copyrighted Blizzard content
+Users must source these assets from their own legitimate World of Warcraft installation
+
+---
+
 ## 📜 License
 
 This project uses the **GNU General Public License v3.0**.
